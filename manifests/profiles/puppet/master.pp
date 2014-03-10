@@ -64,8 +64,8 @@ class coi::profiles::puppet::master (
   # install puppet master
   class { '::puppet::master':
     certname    => $::fqdn,
-    autosign    => true,
-    modulepath  => '/etc/puppet/modules:/usr/share/puppet/modules',
+    autosign    => hiera('puppet::master::autosign', true),
+    modulepath  => hiera('puppet::master::modulepath', '/etc/puppet/modules:/usr/share/puppet/modules'),
   }
 
   # install puppetdb and postgresql
