@@ -136,8 +136,4 @@ UcXHbA==
   # (the equivalent work for apt is done by the cobbler boot, which sets this up as
   # a part of the installation.)
 
-  class { 'collectd':
-    #graphitehost         => $build_node_fqdn,
-    #management_interface => $public_interface,
-  }
 }

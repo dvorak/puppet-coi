@@ -16,4 +16,9 @@ class coi::profiles::monitoring_server(
     gr_apache_port   => 8190,
  #  graphitehost  => $graphitehost,
   }
+
+  class { 'collectd':
+    #graphitehost         => $build_node_fqdn,
+    #management_interface => $public_interface,
+  }
 }
