@@ -31,6 +31,8 @@ class coi::profiles::puppet::master (
   $puppetdb_ssl_port       = 8081,
 ) inherits coi::profiles::base {
 
+  include ::puppet::master
+
   $puppet_master_bind_address = hiera('puppet_master_address', $::fqdn)
   # installs puppet
   # I think I want to assume a puppet 3.x install
@@ -59,13 +61,6 @@ class coi::profiles::puppet::master (
     use_ssl         => false,
     timeout         => 240,
     notify          => Class['apache'],
-  }
-
-  # install puppet master
-  class { '::puppet::master':
-    certname    => $::fqdn,
-    autosign    => hiera('puppet::master::autosign', true),
-    modulepath  => hiera('puppet::master::modulepath', '/etc/puppet/modules:/usr/share/puppet/modules'),
   }
 
   # install puppetdb and postgresql
